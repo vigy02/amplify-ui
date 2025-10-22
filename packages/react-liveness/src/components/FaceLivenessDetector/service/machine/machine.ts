@@ -76,9 +76,12 @@ let freshnessColorStartTimestamp: number;
 let freshnessColorEndTimestamp: number;
 let videoSettingsBeforeStopping: MediaTrackSettings;
 
-let responseStream: Promise<AsyncIterable<LivenessResponseStream>>;
+let responseStream: Promise<AsyncIterable<LivenessResponseStream>> | undefined;
 const responseStreamActor = async (callback: StreamActorCallback) => {
   try {
+    if (!responseStream) {
+      throw new Error('Response stream not initialized');
+    }
     const stream = await responseStream;
     for await (const event of stream) {
       if (isServerSessionInformationEvent(event)) {
