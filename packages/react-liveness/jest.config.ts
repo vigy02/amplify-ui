@@ -24,6 +24,7 @@ const config: Config = {
   moduleNameMapper: {
     '^nanoid$': '<rootDir>/../../node_modules/nanoid',
     '^uuid$': '<rootDir>/../../node_modules/uuid',
+    '@aws-sdk/util-endpoints': '<rootDir>/__mocks__/@aws-sdk/util-endpoints.ts',
   },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   preset: 'ts-jest',
